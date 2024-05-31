@@ -1,0 +1,51 @@
+{% extends "FinanceTracker/base.html" %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        <div class="container mt-3">
+            <a href="{% url 'home' %}" class="btn btn-outline-primary mb-4">
+                <i class="fas fa-arrow-left mr-2"></i> Back
+            </a>
+        <div class="card shadow-lg border-0 rounded-lg">
+            <div class="card-header bg-info text-white text-center py-3">
+                <h2 class="card-title">Transactions</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for expense in expenses %}
+                            <tr class="table-danger">
+                                <td>Expense</td>
+                                <td>{{ expense.description }}</td>
+                                <td>${{ expense.amount }}</td>
+                                <td>{{ expense.date }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% for income in income %}
+                            <tr class="table-success">
+                                <td>Income</td>
+                                <td>{{ income.source }}</td>
+                                <td>${{ income.amount }}</td>
+                                <td>{{ income.date }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
